@@ -1,6 +1,6 @@
-const Manager = require('');
-const Engineer = require('')
-const Intern = require('')
+const Manager = require('../lib/manager');
+const Engineer = require('../lib/engineer')
+const Intern = require('../lib/intern')
 
 function generateCards(team) {
     let cards = []
@@ -23,3 +23,23 @@ function generateCards(team) {
     }
     return cards.join(``)
   }
+
+  let generateManagerCard = (Manager) => {
+    return ``
+  }
+  
+  let generateEngineerCard = (Engineer) => {
+    return ``
+  };
+  
+  let generateInternCard = (Intern) => {
+    return ``
+  }
+  
+  function generateTeam(team) {
+    console.log(team)
+  return ``
+  }
+  
+  
+  module.exports = generateTeam;
