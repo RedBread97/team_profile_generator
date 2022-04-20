@@ -104,7 +104,7 @@ const generateEmployee = () => {
         teams.push(employee); 
 
         if (confirmAddEmployee) {
-            return addEmployee(teamArray); 
+            return addEmployee(teams); 
         } else {
             return teams;
         }
