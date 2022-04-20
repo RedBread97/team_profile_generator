@@ -34,7 +34,7 @@ const generateManager = () => {
     const {name, email, officeNumber,id} = managerInput;
     const manager = new Manager(name, email, officeNumber, id)
 
-    teamArray.push(manager); 
+    teams.push(manager); 
     console.log(manager); 
 })
 };
@@ -101,12 +101,12 @@ const generateEmployee = () => {
             console.log(employee);
         }
 
-        teamArray.push(employee); 
+        teams.push(employee); 
 
         if (confirmAddEmployee) {
             return addEmployee(teamArray); 
         } else {
-            return teamArray;
+            return teams;
         }
     })
 };
