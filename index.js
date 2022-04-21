@@ -3,7 +3,7 @@ const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateHTML = require('./src/generate_HTML');
+const generateHtml = require('./src/generate_HTML');
 
 teams = [];
 const generateManager = () => {
@@ -15,8 +15,8 @@ const generateManager = () => {
     },
     {
         type: 'input',
-        name: 'email',
-        message: 'What is the email of the team manager?',
+        name: 'id',
+        message: 'What is the id of the team manager?',
     },
     {
         type: 'input',
@@ -25,14 +25,15 @@ const generateManager = () => {
     },
     {
         type: 'input',
-        name: 'id',
-        message: 'What is the id of the team manager?',
+        name: 'email',
+        message: 'What is the email of the team manager?',
     },
+    
 ])
 
 .then(managerInput => {
     const {name, email, officeNumber,id} = managerInput;
-    const manager = new Manager(name, email, officeNumber, id)
+    const manager = new Manager(name, id, officeNumber, email)
 
     teams.push(manager); 
     console.log(manager); 
@@ -69,14 +70,14 @@ const generateEmployee = () => {
             type: 'input',
             name: 'github',
             message: 'What is the engineers github?',
-            when: (input) => input.type === "Engineer",
+            when: (input) => input.type === "engineer",
            
         },
         {
             type: 'input',
             name: 'school',
             message: 'What is the interns school?',
-            when: (input) => input.type === "Intern",
+            when: (input) => input.type === "intern",
            
         },
         {
@@ -88,14 +89,15 @@ const generateEmployee = () => {
     ])
 
     .then(employeeData => {
-        let {name, type, email, id, github, school, addEmployee} = employeeData;
+        console.log(employeeData);
+        let { name, id, email, type, github, school, addEmployee} = employeeData;
         let employee;
-        if (type === "Engineer") {
+        if (type === "engineer") {
             employee = new Engineer (name, id, email, github);
 
             console.log(employee);
 
-        } else if (type === "Intern") {
+        } else if (type === "intern") {
             employee = new Intern (name, id, email, school);
 
             console.log(employee);
@@ -111,8 +113,8 @@ const generateEmployee = () => {
     })
 };
 
-const writeFile = data => {
-    fs.writeFile('index.html', data, err => {
+const writeFile = (data) => {
+    fs.writeFile('./dist/index.html', data, err => {
         if (err) {
             console.log(err);
             return;
@@ -128,7 +130,8 @@ const writeFile = data => {
 generateManager()
 .then(generateEmployee)
 .then(teams => {
-    return generateHTML(teams);
+  return generateHtml(teams);
+    
 })
 .then(teamPage => {
     return writeFile(teamPage);
