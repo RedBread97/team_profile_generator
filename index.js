@@ -3,7 +3,7 @@ const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
 const fs = require('fs');
 const inquirer = require('inquirer');
-// const generateTeam = require('./src/generate_HTML');
+const generateHTML = require('./src/generate_HTML');
 
 teams = [];
 const generateManager = () => {
@@ -69,14 +69,14 @@ const generateEmployee = () => {
             type: 'input',
             name: 'github',
             message: 'What is the engineers github?',
-            when: (input) => input.role === "Engineer",
+            when: (input) => input.type === "Engineer",
            
         },
         {
             type: 'input',
             name: 'school',
             message: 'What is the interns school?',
-            when: (input) => input.role === "Intern",
+            when: (input) => input.type === "Intern",
            
         },
         {
@@ -103,10 +103,21 @@ const generateEmployee = () => {
 
         teams.push(employee); 
 
-        if (confirmAddEmployee) {
-            return addEmployee(teams); 
+        if (addEmployee) {
+            return generateEmployee(teams); 
         } else {
             return teams;
+        }
+    })
+};
+
+const writeFile = data => {
+    fs.writeFile('index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        }else{
+            console.log("Your team profile has been generated.");
         }
     })
 };
@@ -116,3 +127,12 @@ const generateEmployee = () => {
 
 generateManager()
 .then(generateEmployee)
+.then(teams => {
+    return generateHTML(teams);
+})
+.then(teamPage => {
+    return writeFile(teamPage);
+})
+.catch(err => {
+    console.log(err);
+});

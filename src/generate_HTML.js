@@ -1,6 +1,3 @@
-const Manager = require('../lib/manager');
-const Engineer = require('../lib/engineer')
-const Intern = require('../lib/intern')
 
 const generateManager = function (manager) {
   return `
@@ -33,7 +30,7 @@ return `
 `;
 }
 
-const generateInternal = function (intern) {
+const generateIntern = function (intern) {
   return `
 <div class="card">
 <h4 class="card-header">${intern.name}</h4>
@@ -48,11 +45,31 @@ const generateInternal = function (intern) {
 `;
 }
 
-generateHTML = (data) => {
-  for(let i = 0; i < data.length; i ++){
+const generateHTML = (data) => {
+  teamArray = [];
+
+  for(let i = 0; i < data; i ++){
     const employee = data[i];
-    
+    const type = employee.getType();
+
+  if (type === 'Manager') {
+    const managerCard = generateManager(employee);
+    teamArray.push(managerCard);
   }
+  if (type === 'Engineer') {
+    const engineerCard = generateEngineer(employee);
+    teamArray.push(engineerCard);
+  }
+  if (type === 'Intern') {
+    const internCard = generateIntern(employee);
+    teamArray.push(internCard);
+  }
+
+  }
+  const employeeCards = teamArray.join('')
+  return employeeCards;
+  
+
 }
 
-  module.exports = generateTeam;
+  module.exports.generateHTML = generateHTML()
