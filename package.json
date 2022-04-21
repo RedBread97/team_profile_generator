@@ -1,4 +1,25 @@
 {
+  "name": "team_profile_generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --verbose test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedBread97/team_profile_generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedBread97/team_profile_generator/issues"
+  },
+  "homepage": "https://github.com/RedBread97/team_profile_generator#readme",
   "dependencies": {
     "inquirer": "^8.2.2",
     "jest": "^27.5.1"
