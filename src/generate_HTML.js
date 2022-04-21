@@ -2,7 +2,10 @@
 const generateManager = function (manager) {
   return `
   <div class="card">
-  <h5 class="card-header">${manager.name}</h5>
+  <div class="card-header bg-secondary">
+  <h4>${manager.name}</h4>
+  <h5>Manager</h5>
+  </div>
   <div class="card-body">
   
     <p class="id">Id: ${manager.id}</p>
@@ -19,7 +22,10 @@ const generateManager = function (manager) {
 const generateEngineer = function (engineer) {
 return `
 <div class="card">
-<h4 class="card-header">${engineer.name}</h4>
+<div class="card-header bg-secondary">
+<h4">${engineer.name}</h4>
+<h5>Engineer</h5>
+</div>
 <div class="card-body">
 
   <p class="id">Id: ${engineer.id}</p>
@@ -34,7 +40,10 @@ return `
 const generateIntern = function (intern) {
   return `
 <div class="card">
-<h4 class="card-header">${intern.name}</h4>
+<div class="card-header bg-secondary">
+<h4">${intern.name}</h4>
+<h5>Intern</h5>
+</div>
 <div class="card-body">
 
   <p class="id">Id: ${intern.id}</p>
@@ -85,7 +94,7 @@ const generateHtml = (data) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
           <link rel="stylesheet" href="/dist/style.css">
-          <title>Test.html</title>
+          <title>Team Profile</title>
       </head>
       <body>
           <header>
